@@ -1,0 +1,23 @@
+using "io"
+
+using (
+	"math"
+	"https://github.com/alongubkin/package.git"
+)
+
+public class BaseClass {
+	public int max(int arg1, string arg2 = "optional argument") { 
+		if arg1 > arg2 { 
+		
+		}
+		
+		var list = ["a", "b", "c"];
+		
+		var dict = {
+			"key": "val",
+			"list": list
+		};
+		
+		return arg1 if arg1 > arg2 else arg2;
+	}
+}
