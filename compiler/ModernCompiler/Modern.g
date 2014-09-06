@@ -16,7 +16,7 @@ tokens
     FUNC_DEF;
     BLOCK;
     ASSIGNMENT;
-    COND;
+    COMPARISON;
     MULTIPLY;
     ADDITION;
 }
@@ -93,7 +93,7 @@ expression
 
 comparisonExpression
     :   additionExpression (comparisonOperator additionExpression)?  
-			-> ^(COND additionExpression (comparisonOperator additionExpression)?)
+			-> ^(COMPARISON additionExpression (comparisonOperator additionExpression)?)
     ;
 
 comparisonOperator
