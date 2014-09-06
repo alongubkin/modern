@@ -72,22 +72,23 @@ block
 
 statement
 	: forStatement
-    | expr ';'
+    | expression ';'
     | block
     | assignStatement ';'
     | ';'
     ;
 
 forStatement
-    :   'for' '(' start=assignStatement ';' e=expr ';' next=assignStatement ')' block
+    :   'for' '(' start=assignStatement ';' e=expression ';' next=assignStatement ')' block
         -> ^('for' $start $e $next block)
     ;
 
 assignStatement
-    :   ID EQ expr -> ^(ASSIGNMENT ID expr)
+    :	ID EQ expression -> ^(ASSIGNMENT ID expression)
     ;
 
-expr:   condExpr
+expression
+	:	condExpr
     ;
 
 condExpr
@@ -106,7 +107,7 @@ mexpr
 atom
     : ID      
     | INT      
-    | '(' expr ')' -> expr
+    | '(' expression ')' -> expression
     ; 
     
 logicOperator
