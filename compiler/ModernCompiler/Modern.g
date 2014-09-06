@@ -65,9 +65,9 @@ type
 block
     :   lc='{'
             variable*
-            cstat*
+            statement*
         '}'
-        -> ^(BLOCK[$lc, "BLOCK"] variable* cstat*)
+        -> ^(BLOCK[$lc, "BLOCK"] variable* statement*)
     ;
 
 statement
