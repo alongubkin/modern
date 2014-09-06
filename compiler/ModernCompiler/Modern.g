@@ -74,16 +74,16 @@ statement
 	: forStatement
     | expr ';'
     | block
-    | assignStat ';'
+    | assignStatement ';'
     | ';'
     ;
 
 forStatement
-    :   'for' '(' start=assignStat ';' e=expr ';' next=assignStat ')' block
+    :   'for' '(' start=assignStatement ';' e=expr ';' next=assignStatement ')' block
         -> ^('for' $start $e $next block)
     ;
 
-assignStat
+assignStatement
     :   ID EQ expr -> ^(ASSIGNMENT ID expr)
     ;
 
