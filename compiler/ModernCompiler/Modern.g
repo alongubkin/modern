@@ -31,11 +31,11 @@ program
     ;
 
 declaration
-    :   variable
+    :   variableDeclaration
     |   functionHeader block -> ^(FUNC_DEF functionHeader block)
     ;
 
-variable
+variableDeclaration
     :   type declarator ';'	-> ^(VAR_DEF type declarator)
     ;
 
