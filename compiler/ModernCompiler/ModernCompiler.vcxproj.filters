@@ -18,6 +18,9 @@
     <None Include="Modern.g" />
     <None Include="output\Modern.tokens" />
     <None Include="test.modern" />
+    <None Include="main.cc.old">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="output\ModernLexer.c">
@@ -26,7 +29,25 @@
     <ClCompile Include="output\ModernParser.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="ASTGenerator.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParseException.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FunctionNode.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VariableDeclarationNode.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstAssignmentNode.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,6 +56,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="output\ModernParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ASTGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParseException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VariableDeclarationNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Reference.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstAssignmentNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

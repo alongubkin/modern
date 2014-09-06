@@ -9,6 +9,7 @@ options
 
 tokens 
 {
+	PROGRAM;
     VAR_DEF;
     ARG_DEF;
     FUNC_HDR;
@@ -28,7 +29,7 @@ tokens
 }
 
 program
-    :   declaration+
+    :   declaration+ -> ^(PROGRAM declaration+)
     ;
 
 declaration

@@ -1,4 +1,11 @@
 int foo(int x) {
-	y = (5+(1+x));
+	int y;
+	char z;
+
+	y = 5;
+}
+
+int foo2(int x) {
+	bool x;
 }
 

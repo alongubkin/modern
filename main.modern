@@ -1,23 +1,28 @@
-using "io"
+package myapp;
 
 using (
+	"http"
 	"math"
-	"https://github.com/alongubkin/package.git"
+	"https://github.com/modern/stateManager.git"
+	"https://github.com/modern/ui.git"
 )
 
-public class BaseClass {
-	public int max(int arg1, string arg2 = "optional argument") { 
-		if arg1 > arg2 { 
+void main() {
+	StateManager
+		.add("feed")
+		.fromTemplate(View.fromXml('feed.xml'))
+		.withController(typeof FeedController);
 		
-		}
-		
-		var list = ["a", "b", "c"];
-		
-		var dict = {
-			"key": "val",
-			"list": list
-		};
-		
-		return arg1 if arg1 > arg2 else arg2;
+	StateManager
+		.add("item")
+		.fromTemplate(View.fromXml('item.xml'))
+		.withController(typeof ItemController);
+	
+	StateManager.defaultState("feed");
+}
+
+class FeedController : Controller {
+	public FeedController { 
+
 	}
 }

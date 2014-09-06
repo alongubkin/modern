@@ -41,7 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Alon\Desktop\libantlr3c-3.4\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Alon\Desktop\libantlr3c-3.4\include;C:\llvm-3.5.0.src\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
     <SourcePath>$(SourcePath)</SourcePath>
     <TargetName>$(ProjectName)3</TargetName>
@@ -60,7 +60,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>C:\Users\Alon\Desktop\libantlr3c-3.4\Debug\antlr3cd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LLVMAnalysis.lib;LLVMCore.lib;LLVMExecutionEngine.lib;LLVMInstCombine.lib;LLVMJIT.lib;LLVMMC.lib;LLVMScalarOpts.lib;LLVMSupport.lib;LLVMTransformUtils.lib;LLVMX86CodeGen.lib;LLVMX86Desc.lib;LLVMX86Info.lib;LLVMObject.lib;LLVMBitReader.lib;LLVMAsmPrinter.lib;LLVMMCParser.lib;LLVMSelectionDAG.lib;LLVMCodeGen.lib;LLVMipa.lib;LLVMTarget.lib;LLVMX86AsmPrinter.lib;LLVMX86Utils.lib;antlr3cd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Alon\Desktop\libantlr3c-3.4\Debug;C:\llvm-3.5.0.src\Debug\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -81,18 +82,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="main.cc.old" />
     <None Include="Modern.g" />
     <None Include="output\Modern.tokens" />
     <None Include="test.modern" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="ConstAssignmentNode.cc" />
+    <ClCompile Include="FunctionNode.cc" />
+    <ClCompile Include="main.cc" />
+    <ClCompile Include="Node.cc" />
     <ClCompile Include="output\ModernLexer.c" />
     <ClCompile Include="output\ModernParser.c" />
+    <ClCompile Include="ASTGenerator.cc" />
+    <ClCompile Include="ParseException.cc" />
+    <ClCompile Include="VariableDeclarationNode.cc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConstAssignmentNode.h" />
+    <ClInclude Include="FunctionNode.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="output\ModernLexer.h" />
     <ClInclude Include="output\ModernParser.h" />
+    <ClInclude Include="ASTGenerator.h" />
+    <ClInclude Include="ParseException.h" />
+    <ClInclude Include="Reference.h" />
+    <ClInclude Include="VariableDeclarationNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
