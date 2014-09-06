@@ -15,6 +15,7 @@ tokens
     FUNC_DECL;
     FUNC_DEF;
     BLOCK;
+    EXPRESSION;
     ASSIGNMENT;
     COMPARISON;
     MULTIPLY;
@@ -88,7 +89,7 @@ assignStatement
     ;
 
 expression
-	:	comparisonExpression
+	:	comparisonExpression -> ^(EXPRESSION comparisonExpression)
     ;
 
 comparisonExpression
