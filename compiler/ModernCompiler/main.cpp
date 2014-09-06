@@ -1,13 +1,20 @@
 #include "output/ModernLexer.h"
 #include "output/ModernParser.h"
 
-
 void visit(pANTLR3_BASE_TREE node);
 void visitFunctionDefinition(pANTLR3_BASE_TREE node);
 void visitFunctionHeader(pANTLR3_BASE_TREE node);
 char *visitArgumentDefinition(pANTLR3_BASE_TREE node);
 void visitBlock(pANTLR3_BASE_TREE node);
 void visitVariableDeclaration(pANTLR3_BASE_TREE node);
+void *visitExpression(pANTLR3_BASE_TREE node);
+void *visitComparison(pANTLR3_BASE_TREE node);
+void *visitAddition(pANTLR3_BASE_TREE node);
+void *visitMultiply(pANTLR3_BASE_TREE node);
+void visitAssignment(pANTLR3_BASE_TREE node);
+
+pANTLR3_BASE_TREE getChild(pANTLR3_BASE_TREE node, ANTLR3_UINT32 i);
+char *getChildText(pANTLR3_BASE_TREE node, ANTLR3_UINT32 i);
 
 int main(int argc, char *argv[]) 
 {
@@ -69,38 +76,40 @@ void visit(pANTLR3_BASE_TREE node)
 	{
 		visitVariableDeclaration(node);
 	}
+	else if (strcmp(tokenName, "EXPRESSION") == 0)
+	{
+		visitExpression(node);
+	}
+	else if (strcmp(tokenName, "ASSIGNMENT") == 0)
+	{
+		visitAssignment(node);
+	}
 }
 
 void visitFunctionDefinition(pANTLR3_BASE_TREE node)
 {
-	visitFunctionHeader((pANTLR3_BASE_TREE)node->getChild(node, 0));
-	visitBlock((pANTLR3_BASE_TREE)node->getChild(node, 1));
+	visitFunctionHeader(getChild(node, 0));
+	visitBlock(getChild(node, 1));
 }
 
 void visitFunctionHeader(pANTLR3_BASE_TREE node)
 {
-	pANTLR3_BASE_TREE returnTypeNode = (pANTLR3_BASE_TREE)node->getChild(node, 0);
-	char *returnType = (char*)returnTypeNode->getText(returnTypeNode)->chars;
-
-	pANTLR3_BASE_TREE funcNameNode = (pANTLR3_BASE_TREE)node->getChild(node, 1);
-	char *funcName = (char*)funcNameNode->getText(funcNameNode)->chars;
+	char *returnType = getChildText(node, 0);
+	char *funcName = getChildText(node, 1);
 
 	printf("\n----------------------------\nFunction definition\n\tName: %s\n\tReturn Type: %s\n\n", funcName, returnType);
 
 	for (int i = 2, len = node->getChildCount(node); i < len; i++)
 	{
-		visitArgumentDefinition((pANTLR3_BASE_TREE)node->getChild(node, i));
+		visitArgumentDefinition(getChild(node, i));
 	}
 	printf("\n----------------------------\n");
 }
 
 char *visitArgumentDefinition(pANTLR3_BASE_TREE node)
 {
-	pANTLR3_BASE_TREE typeNode = (pANTLR3_BASE_TREE)node->getChild(node, 0);
-	char *type = (char*)typeNode->getText(typeNode)->chars;
-
-	pANTLR3_BASE_TREE nameNode = (pANTLR3_BASE_TREE)node->getChild(node, 1);
-	char *name = (char*)nameNode->getText(nameNode)->chars;
+	char *type = getChildText(node, 0);
+	char *name = getChildText(node, 1);
 
 	printf("Argument - Name: %s, Return Type: %s\n", name, type);
 	return type;
@@ -110,17 +119,85 @@ void visitBlock(pANTLR3_BASE_TREE node)
 {
 	for (int i = 0, len = node->getChildCount(node); i < len; i++)
 	{
-		visit((pANTLR3_BASE_TREE)node->getChild(node, i));
+		visit(getChild(node, i));
 	}
 }
 
 void visitVariableDeclaration(pANTLR3_BASE_TREE node)
 {
-	pANTLR3_BASE_TREE typeNode = (pANTLR3_BASE_TREE)node->getChild(node, 0);
-	char *type = (char*)typeNode->getText(typeNode)->chars;
-
-	pANTLR3_BASE_TREE nameNode = (pANTLR3_BASE_TREE)node->getChild(node, 1);
-	char *name = (char*)nameNode->getText(nameNode)->chars;
+	char *type = getChildText(node, 0);
+	char *name = getChildText(node, 1);
 
 	printf("DECLARE VARIABLE -- %s %s", type, name);
+}
+
+void *visitExpression(pANTLR3_BASE_TREE node)
+{
+	if (node->getChildCount(node) == 0)
+	{
+		return node->getText(node)->chars;
+	}
+
+	return visitComparison(getChild(node, 0));
+}
+
+void *visitComparison(pANTLR3_BASE_TREE node)
+{
+	if (node->getChildCount(node) == 1)
+		return visitAddition(getChild(node, 0));
+
+	void *left = visitAddition(getChild(node, 0));
+	char *op = getChildText(node, 1);
+	void *right = visitAddition(getChild(node, 2));
+
+	printf("compare %s", op);
+
+	return NULL;
+}
+
+void *visitAddition(pANTLR3_BASE_TREE node)
+{
+	if (node->getChildCount(node) == 1)
+		return visitMultiply(getChild(node, 0));
+
+	void *left = visitMultiply(getChild(node, 0));
+	char *op = getChildText(node, 1);
+	void *right = visitMultiply(getChild(node, 2));
+
+	printf("addition");
+
+	return NULL;
+}
+
+void *visitMultiply(pANTLR3_BASE_TREE node)
+{
+	if (node->getChildCount(node) == 1)
+		return visitExpression(getChild(node, 0));
+
+	void *left = visitExpression(getChild(node, 0));
+	char *op = getChildText(node, 1);
+	void *right = visitExpression(getChild(node, 2));
+
+	printf("multipication");
+
+	return NULL;
+}
+
+void visitAssignment(pANTLR3_BASE_TREE node)
+{
+	char *variableName = getChildText(node, 0);
+	void *expression = visitExpression(getChild(node, 1));
+	
+	printf("assignment");
+}
+
+pANTLR3_BASE_TREE getChild(pANTLR3_BASE_TREE node, ANTLR3_UINT32 i)
+{
+	return (pANTLR3_BASE_TREE)node->getChild(node, i);
+}
+
+char *getChildText(pANTLR3_BASE_TREE node, ANTLR3_UINT32 i)
+{
+	pANTLR3_BASE_TREE childNode = getChild(node, i);
+	return (char*)childNode->getText(childNode)->chars;
 }
