@@ -103,10 +103,11 @@ comparisonOperator
 	;
 
 additionExpression
-    :   mexpr  ('+' mexpr)*  -> ^(ADDITION mexpr  ('+' mexpr)*)
+    :   multiplicationExpression ('+' multiplicationExpression)*  
+    		-> ^(ADDITION multiplicationExpression  ('+' multiplicationExpression)*)
     ;
 
-mexpr
+multiplicationExpression
     :   atom ('*' atom)* -> ^(MULTIPLY atom ('*' atom)*)
     ;
     
