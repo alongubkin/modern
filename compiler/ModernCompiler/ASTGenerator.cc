@@ -145,7 +145,10 @@ void ASTGenerator::VisitVariableDeclaration(const pANTLR3_BASE_TREE tree, Node *
 
 void ASTGenerator::VisitAssignment(const pANTLR3_BASE_TREE tree, Node *currentNode)
 {
-	
+	AssignmentNode *node = new AssignmentNode();
+	Visit(GetChild(tree, 0), node);
+	Visit(GetChild(tree, 1), node);
+	currentNode->AddChild(node);
 }
 
 void ASTGenerator::VisitExpression(const pANTLR3_BASE_TREE tree, Node *currentNode)

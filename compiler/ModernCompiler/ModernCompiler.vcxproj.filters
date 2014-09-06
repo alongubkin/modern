@@ -91,5 +91,8 @@
     <ClInclude Include="IdentifierNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AssignmentNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

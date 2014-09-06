@@ -13,6 +13,7 @@
 #include "ExpressionNode.h"
 #include "LiteralNode.h"
 #include "IdentifierNode.h"
+#include "AssignmentNode.h"
 
 class ASTGenerator
 {

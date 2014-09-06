@@ -22,7 +22,6 @@ std::string ComparisonExpressionNode::GetNodeSummary() const
 
 std::string ArithmeticExpressionNode::GetNodeSummary() const
 {
-
 	std::ostringstream stream;
 	stream << "ArithmeticExpressionNode { operator: ";
 

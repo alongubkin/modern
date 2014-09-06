@@ -88,7 +88,7 @@ forStatement
     ;
 
 assignStatement
-    :	ID EQ expression -> ^(ASSIGNMENT ID expression)
+    :	ID EQ expression -> ^(ASSIGNMENT ^(IDENTIFIER ID) expression)
     ;
 
 expression
