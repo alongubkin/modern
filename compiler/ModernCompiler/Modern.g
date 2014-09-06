@@ -71,14 +71,14 @@ block
     ;
 
 statement
-	: forStat
+	: forStatement
     | expr ';'
     | block
     | assignStat ';'
     | ';'
     ;
 
-forStat
+forStatement
     :   'for' '(' start=assignStat ';' e=expr ';' next=assignStat ')' block
         -> ^('for' $start $e $next block)
     ;
