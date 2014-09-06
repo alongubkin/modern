@@ -1,11 +1,4 @@
 int foo(int x) {
-	int y;
-	char z;
-
-	y = 5;
-}
-
-int foo2(int x) {
-	bool x;
+	5*(2*x)+6*5;
 }
 

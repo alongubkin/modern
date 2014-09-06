@@ -44,10 +44,16 @@
     <ClCompile Include="VariableDeclarationNode.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ConstAssignmentNode.cc">
+    <ClCompile Include="main.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cc">
+    <ClCompile Include="ExpressionNode.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IdentifierNode.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LiteralNode.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -76,7 +82,13 @@
     <ClInclude Include="Reference.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ConstAssignmentNode.h">
+    <ClInclude Include="ExpressionNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LiteralNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IdentifierNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

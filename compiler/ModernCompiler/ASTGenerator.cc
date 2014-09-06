@@ -34,8 +34,7 @@ Node *ASTGenerator::Generate()
 	ModernParser_program_return program = _parser->program(_parser);
 	
 	printf("%s\n\n", program.tree->toStringTree(program.tree)->chars);
-
-
+	
 	if (_parser->pParser->rec->state->errorCount > 0)
 		throw ParseException("The parser returned errors, tree walking aborted.");
 
@@ -64,6 +63,26 @@ void ASTGenerator::Visit(const pANTLR3_BASE_TREE tree, Node *currentNode)
 	else if (token == "ASSIGNMENT")
 	{
 		VisitAssignment(tree, currentNode);
+	}
+	else if (token == "EXPRESSION")
+	{
+		VisitExpression(tree, currentNode);
+	}
+	else if (token == "COMPARISON")
+	{
+		VisitComparasionExpression(tree, currentNode);
+	}
+	else if (token == "MULTIPLY" || token == "ADDITION")
+	{
+		VisitArithmeticExpression(tree, currentNode);
+	}
+	else if (token == "INTEGER")
+	{
+		VisitIntegerLiteral(tree, currentNode);
+	}
+	else if (token == "IDENTIFIER")
+	{
+		VisitIdentifier(tree, currentNode);
 	}
 }
 
@@ -126,7 +145,102 @@ void ASTGenerator::VisitVariableDeclaration(const pANTLR3_BASE_TREE tree, Node *
 
 void ASTGenerator::VisitAssignment(const pANTLR3_BASE_TREE tree, Node *currentNode)
 {
-	// ConstAssignmentNode
+	
+}
+
+void ASTGenerator::VisitExpression(const pANTLR3_BASE_TREE tree, Node *currentNode)
+{
+	Visit(GetChild(tree, 0), currentNode);
+}
+
+void ASTGenerator::VisitComparasionExpression(const pANTLR3_BASE_TREE tree, Node *currentNode)
+{
+	if (tree->getChildCount(tree) == 1)
+	{
+		Visit(GetChild(tree, 0), currentNode);
+		return;
+	}
+
+	ComparisonExpressionNode *node = new ComparisonExpressionNode();
+	Visit(GetChild(tree, 0), node);
+
+	currentNode->AddChild(node);
+
+	std::string op = GetChildText(tree, 1);
+
+	if (op == "<")
+		node->SetOperator(SMALLER);
+	else if (op == "<=")
+		node->SetOperator(SMALLER_OR_EQUAL);
+	else if (op == ">")
+		node->SetOperator(LARGER);
+	else if (op == ">=")
+		node->SetOperator(LARGER_OR_EQUAL);
+	else if (op == "==")
+		node->SetOperator(EQUALS);
+
+	Visit(GetChild(tree, 2), node);
+
+}
+
+void ASTGenerator::VisitArithmeticExpression(const pANTLR3_BASE_TREE tree, Node *currentNode)
+{
+	if (tree->getChildCount(tree) == 1)
+	{
+		Visit(GetChild(tree, 0), currentNode);
+		return;
+	}
+
+	Node *parent = currentNode;
+
+	int i = 0,
+		len = tree->getChildCount(tree);
+
+	do
+	{
+		ArithmeticExpressionNode *node = new ArithmeticExpressionNode();
+		Visit(GetChild(tree, i++), node);
+
+		std::string op = GetChildText(tree, i++);
+
+		if (op == "+")
+			node->SetOperator(PLUS_);
+		else if (op == "-")
+			node->SetOperator(MINUS);
+		else if (op == "/")
+			node->SetOperator(DIVISION);
+		else if (op == "*")
+			node->SetOperator(MULTIPLY_);
+
+		parent->AddChild(node);
+
+		if (i == len - 1)
+		{
+			Visit(GetChild(tree, i++), node);
+		}
+		else
+		{
+			parent = node;
+		}
+	} while (i < len);
+}
+
+void ASTGenerator::VisitIntegerLiteral(const pANTLR3_BASE_TREE tree, Node *currentNode)
+{
+	std::string text = GetChildText(tree, 0);
+
+	LiteralNode<long> *node = new LiteralNode<long>();
+	node->SetValue(atol(text.c_str()));
+	
+	currentNode->AddChild(node);
+}
+
+void ASTGenerator::VisitIdentifier(const pANTLR3_BASE_TREE tree, Node *currentNode)
+{
+	IdentifierNode *node = new IdentifierNode();
+	node->SetName(GetChildText(tree, 0));
+
+	currentNode->AddChild(node);
 }
 
 pANTLR3_BASE_TREE ASTGenerator::GetChild(const pANTLR3_BASE_TREE tree, const ANTLR3_UINT32 index) const

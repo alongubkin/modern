@@ -88,8 +88,10 @@
     <None Include="test.modern" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ConstAssignmentNode.cc" />
+    <ClCompile Include="ExpressionNode.cc" />
     <ClCompile Include="FunctionNode.cc" />
+    <ClCompile Include="IdentifierNode.cc" />
+    <ClCompile Include="LiteralNode.cc" />
     <ClCompile Include="main.cc" />
     <ClCompile Include="Node.cc" />
     <ClCompile Include="output\ModernLexer.c" />
@@ -99,8 +101,10 @@
     <ClCompile Include="VariableDeclarationNode.cc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ConstAssignmentNode.h" />
+    <ClInclude Include="ExpressionNode.h" />
     <ClInclude Include="FunctionNode.h" />
+    <ClInclude Include="IdentifierNode.h" />
+    <ClInclude Include="LiteralNode.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="output\ModernLexer.h" />
     <ClInclude Include="output\ModernParser.h" />

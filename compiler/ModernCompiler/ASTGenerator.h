@@ -6,10 +6,13 @@
 #include "output/ModernLexer.h"
 #include "output/ModernParser.h"
 
-#include "ParseException.h";
+#include "ParseException.h"
 #include "Node.h"
-#include "FunctionNode.h";
+#include "FunctionNode.h"
 #include "VariableDeclarationNode.h"
+#include "ExpressionNode.h"
+#include "LiteralNode.h"
+#include "IdentifierNode.h"
 
 class ASTGenerator
 {
@@ -28,7 +31,12 @@ private:
 	void VisitArgumentDefinition(const pANTLR3_BASE_TREE tree, FunctionNode *currentNode);
 	void VisitVariableDeclaration(const pANTLR3_BASE_TREE tree, Node *currentNode);
 	void VisitAssignment(const pANTLR3_BASE_TREE tree, Node *currentNode);
-	
+	void VisitExpression(const pANTLR3_BASE_TREE tree, Node *currentNode);
+	void VisitComparasionExpression(const pANTLR3_BASE_TREE tree, Node *currentNode);
+	void VisitArithmeticExpression(const pANTLR3_BASE_TREE tree, Node *currentNode);
+	void VisitIntegerLiteral(const pANTLR3_BASE_TREE tree, Node *currentNode);
+	void VisitIdentifier(const pANTLR3_BASE_TREE tree, Node *currentNode);
+
 	pANTLR3_BASE_TREE GetChild(const pANTLR3_BASE_TREE tree, const ANTLR3_UINT32 index) const;
 	std::string GetChildText(const pANTLR3_BASE_TREE tree, const ANTLR3_UINT32 index) const;
 	std::string GetTreeToken(const pANTLR3_BASE_TREE tree) const;

@@ -21,6 +21,8 @@ tokens
     COMPARISON;
     MULTIPLY;
     ADDITION;
+    IDENTIFIER;
+    INTEGER;
 }
 
 @header
@@ -112,10 +114,11 @@ additionExpression
 multiplicationExpression
     :   literal ('*' literal)* -> ^(MULTIPLY literal ('*' literal)*)
     ;
-    
+
+	
 literal
-    : ID      
-    | INT      
+    : ID -> ^(IDENTIFIER ID)
+    | INT -> ^(INTEGER INT)
     | '(' expression ')' -> expression
     ; 
     
