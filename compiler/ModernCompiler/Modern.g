@@ -64,10 +64,10 @@ type
 
 block
     :   lc='{'
-            variable*
+            variableDeclaration*
             statement*
         '}'
-        -> ^(BLOCK[$lc, "BLOCK"] variable* statement*)
+        -> ^(BLOCK[$lc, "BLOCK"] variableDeclaration* statement*)
     ;
 
 statement
