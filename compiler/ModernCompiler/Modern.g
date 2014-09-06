@@ -92,15 +92,17 @@ expression
     ;
 
 comparisonExpression
-    :   aexpr (comparisonOperator aexpr)?  -> ^(COND aexpr (comparisonOperator aexpr)?)
+    :   additionExpression (comparisonOperator additionExpression)?  
+			-> ^(COND additionExpression (comparisonOperator additionExpression)?)
     ;
 
 comparisonOperator
-	:	OPLT | EQEQ 
+	:	OPLT 
+	|	EQEQ 
     |	{false}? NeverUsedRule	
 	;
 
-aexpr
+additionExpression
     :   mexpr  ('+' mexpr)*  -> ^(ADDITION mexpr  ('+' mexpr)*)
     ;
 
