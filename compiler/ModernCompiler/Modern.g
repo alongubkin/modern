@@ -108,10 +108,10 @@ additionExpression
     ;
 
 multiplicationExpression
-    :   atom ('*' atom)* -> ^(MULTIPLY atom ('*' atom)*)
+    :   literal ('*' literal)* -> ^(MULTIPLY literal ('*' literal)*)
     ;
     
-atom
+literal
     : ID      
     | INT      
     | '(' expression ')' -> expression
