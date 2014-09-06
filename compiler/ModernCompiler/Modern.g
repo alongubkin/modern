@@ -88,14 +88,19 @@ assignStatement
     ;
 
 expression
-	:	condExpr
+	:	comparisonExpression
     ;
 
-condExpr
+comparisonExpression
     :   aexpr (logicOperator aexpr)?  -> ^(COND aexpr (logicOperator aexpr)?)
     ;
 
-    
+logicOperator
+	:	OPLT | EQEQ 
+    |	{false}? NeverUsedRule	
+	;
+
+
 aexpr
     :   mexpr  ('+' mexpr)*  -> ^(ADDITION mexpr  ('+' mexpr)*)
     ;
@@ -110,10 +115,6 @@ atom
     | '(' expression ')' -> expression
     ; 
     
-logicOperator
-	:	OPLT | EQEQ 
-    |	{false}? NeverUsedRule	
-	;
 
 NeverUsedRule: /* don't care*/ ;
 
