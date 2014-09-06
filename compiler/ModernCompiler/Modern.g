@@ -72,10 +72,10 @@ block
 
 statement
 	: forStat
-    | expr ';'!
+    | expr ';'
     | block
-    | assignStat ';'!
-    | ';'!
+    | assignStat ';'
+    | ';'
     ;
 
 forStat
