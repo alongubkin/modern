@@ -70,7 +70,8 @@ block
         -> ^(BLOCK[$lc, "BLOCK"] variable* cstat*)
     ;
 
-cstat: forStat
+statement
+	: forStat
     | expr ';'!
     | block
     | assignStat ';'!
