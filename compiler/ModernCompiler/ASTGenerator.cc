@@ -202,7 +202,7 @@ void ASTGenerator::VisitArithmeticExpression(const pANTLR3_BASE_TREE tree, Node 
 		return;
 	}
 
-	Node *parent = currentNode;
+	Node *child = NULL;
 
 	int i = 0,
 		len = tree->getChildCount(tree);
@@ -210,8 +210,16 @@ void ASTGenerator::VisitArithmeticExpression(const pANTLR3_BASE_TREE tree, Node 
 	do
 	{
 		ArithmeticExpressionNode *node = new ArithmeticExpressionNode();
-		Visit(GetChild(tree, i++), node);
 
+		if (child == NULL)
+		{
+			Visit(GetChild(tree, i++), node);
+		}
+		else
+		{
+			node->AddChild(child);
+		}
+		
 		std::string op = GetChildText(tree, i++);
 
 		if (op == "+")
@@ -223,17 +231,11 @@ void ASTGenerator::VisitArithmeticExpression(const pANTLR3_BASE_TREE tree, Node 
 		else if (op == "*")
 			node->SetOperator(MULTIPLY_);
 
-		parent->AddChild(node);
-
-		if (i == len - 1)
-		{
-			Visit(GetChild(tree, i++), node);
-		}
-		else
-		{
-			parent = node;
-		}
+		Visit(GetChild(tree, i++), node);
+		child = node;
 	} while (i < len);
+
+	currentNode->AddChild(child);
 }
 
 void ASTGenerator::VisitIntegerLiteral(const pANTLR3_BASE_TREE tree, Node *currentNode)
