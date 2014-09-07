@@ -43,6 +43,7 @@ private:
 	void VisitFunctionHeader(const pANTLR3_BASE_TREE tree, FunctionNode *currentNode);
 	void VisitArgumentDefinition(const pANTLR3_BASE_TREE tree, FunctionNode *currentNode);
 	void VisitVariableDeclaration(const pANTLR3_BASE_TREE tree, Node *currentNode);
+	void VisitVariableDeclarator(const pANTLR3_BASE_TREE tree, Node *currentNode, std::string type);
 	void VisitAssignment(const pANTLR3_BASE_TREE tree, Node *currentNode);
 	void VisitExpression(const pANTLR3_BASE_TREE tree, Node *currentNode);
 	void VisitComparasionExpression(const pANTLR3_BASE_TREE tree, Node *currentNode);

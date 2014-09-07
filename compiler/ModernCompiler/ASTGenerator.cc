@@ -137,21 +137,31 @@ void ASTGenerator::VisitArgumentDefinition(const pANTLR3_BASE_TREE tree, Functio
 {
 	Argument *arg = new Argument();
 	arg->SetType(GetChildText(tree, 0));
-	arg->SetName(GetChildText(tree, 1));
+	arg->SetName(GetChildText(GetChild(tree, 1), 0));
 	
 	currentNode->AddArgument(arg);
 }
 
 void ASTGenerator::VisitVariableDeclaration(const pANTLR3_BASE_TREE tree, Node *currentNode)
 {
-	for (int i = 1; i < tree->getChildCount(tree); i++)
-	{
-		VariableDeclarationNode *node = new VariableDeclarationNode();
-		node->SetType(GetChildText(tree, 0));
-		node->SetName(GetChildText(tree, i));
+	std::string type = GetChildText(tree, 0);
 
-		currentNode->AddChild(node);
-	}	
+	for (int i = 1; i < tree->getChildCount(tree); i++)
+		VisitVariableDeclarator(GetChild(tree, i), currentNode, type);
+}
+
+void ASTGenerator::VisitVariableDeclarator(const pANTLR3_BASE_TREE tree, Node *currentNode, std::string type)
+{
+	VariableDeclarationNode *node = new VariableDeclarationNode();
+	node->SetType(type);
+	node->SetName(GetChildText(tree, 0));
+
+	if (tree->getChildCount(tree) > 1)
+	{
+		Visit(GetChild(tree, 1), node);
+	}
+
+	currentNode->AddChild(node);
 }
 
 void ASTGenerator::VisitAssignment(const pANTLR3_BASE_TREE tree, Node *currentNode)

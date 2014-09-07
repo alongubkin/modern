@@ -1,4 +1,7 @@
 double foo (double x, int y) {
-	int a,b,c,d,e,f,g;
+	double a = 5.0,
+		   b,
+		   c = x;
 	return a+b+c;
+
 }

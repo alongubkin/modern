@@ -16,6 +16,7 @@ void AssignmentNode::Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, l
 	llvm::Value *variable = prop->GetValue();
 	llvm::Value *value = expression->Evaluate(module, builder, function);
 
+	// TODO: one truth casting
 	if (prop->GetTypeID() != value->getType()->getTypeID())
 	{
 		switch (prop->GetTypeID())

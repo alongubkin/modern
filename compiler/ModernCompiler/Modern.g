@@ -25,6 +25,7 @@ tokens
     INTEGER;
     RETURN;
     FLOAT_LITERAL;
+	DECLARATOR;    
 }
 
 program
@@ -42,9 +43,14 @@ variableDeclaration
     ;
 
 declarator
-    :   ID 
+    :   ID initalizer?
+    		-> ^(DECLARATOR ID initalizer?)
     ;
 
+initalizer
+	:	EQ expression -> expression
+	;
+	
 functionHeader
     :   type ID '(' ( formalParameter ( ',' formalParameter )* )? ')'
 
