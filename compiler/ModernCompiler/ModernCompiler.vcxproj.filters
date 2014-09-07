@@ -53,9 +53,6 @@
     <ClCompile Include="IdentifierNode.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LiteralNode.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="output\ModernLexer.h">
@@ -92,6 +89,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AssignmentNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ReturnNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

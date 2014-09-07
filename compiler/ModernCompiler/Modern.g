@@ -23,6 +23,7 @@ tokens
     ADDITION;
     IDENTIFIER;
     INTEGER;
+    RETURN;
 }
 
 @header
@@ -79,6 +80,7 @@ statement
     | expression ';'
     | block
     | assignStatement ';'
+    | returnStatement ';'
     | ';'
     ;
 
@@ -87,6 +89,11 @@ forStatement
         -> ^('for' $start $e $next block)
     ;
 
+returnStatement 
+	: 'return' expression?
+		-> ^(RETURN expression?)
+	;
+	
 assignStatement
     :	ID EQ expression -> ^(ASSIGNMENT ^(IDENTIFIER ID) expression)
     ;

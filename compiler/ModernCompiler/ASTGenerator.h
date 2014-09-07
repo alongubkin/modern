@@ -14,6 +14,7 @@
 #include "LiteralNode.h"
 #include "IdentifierNode.h"
 #include "AssignmentNode.h"
+#include "ReturnNode.h"
 
 class ASTGenerator
 {
@@ -37,6 +38,7 @@ private:
 	void VisitArithmeticExpression(const pANTLR3_BASE_TREE tree, Node *currentNode);
 	void VisitIntegerLiteral(const pANTLR3_BASE_TREE tree, Node *currentNode);
 	void VisitIdentifier(const pANTLR3_BASE_TREE tree, Node *currentNode);
+	void VisitReturn(const pANTLR3_BASE_TREE tree, Node *currentNode);
 
 	pANTLR3_BASE_TREE GetChild(const pANTLR3_BASE_TREE tree, const ANTLR3_UINT32 index) const;
 	std::string GetChildText(const pANTLR3_BASE_TREE tree, const ANTLR3_UINT32 index) const;

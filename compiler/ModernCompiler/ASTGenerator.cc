@@ -84,6 +84,10 @@ void ASTGenerator::Visit(const pANTLR3_BASE_TREE tree, Node *currentNode)
 	{
 		VisitIdentifier(tree, currentNode);
 	}
+	else if (token == "RETURN")
+	{
+		VisitReturn(tree, currentNode);
+	}
 }
 
 void ASTGenerator::VisitProgram(const pANTLR3_BASE_TREE tree, Node *currentNode)
@@ -242,6 +246,16 @@ void ASTGenerator::VisitIdentifier(const pANTLR3_BASE_TREE tree, Node *currentNo
 {
 	IdentifierNode *node = new IdentifierNode();
 	node->SetName(GetChildText(tree, 0));
+
+	currentNode->AddChild(node);
+}
+
+void ASTGenerator::VisitReturn(const pANTLR3_BASE_TREE tree, Node *currentNode)
+{
+	ReturnNode *node = new ReturnNode();
+	
+	if (tree->getChildCount(tree) == 1)
+		Visit(GetChild(tree, 0), node);
 
 	currentNode->AddChild(node);
 }

@@ -1,4 +1,4 @@
 int foo(int x) {
-	a=5*y+(h+5)*3;
+	return 5*y+(h+5)*3;
 }
 

@@ -91,7 +91,6 @@
     <ClCompile Include="ExpressionNode.cc" />
     <ClCompile Include="FunctionNode.cc" />
     <ClCompile Include="IdentifierNode.cc" />
-    <ClCompile Include="LiteralNode.cc" />
     <ClCompile Include="main.cc" />
     <ClCompile Include="Node.cc" />
     <ClCompile Include="output\ModernLexer.c" />
@@ -112,6 +111,7 @@
     <ClInclude Include="ASTGenerator.h" />
     <ClInclude Include="ParseException.h" />
     <ClInclude Include="Reference.h" />
+    <ClInclude Include="ReturnNode.h" />
     <ClInclude Include="VariableDeclarationNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
