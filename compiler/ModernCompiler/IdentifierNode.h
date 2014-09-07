@@ -2,10 +2,10 @@
 #define _IDENTIFIER_NODE_H
 
 #include <string>
-#include "Node.h"
+#include "ExpressionNode.h"
 
 class IdentifierNode :
-	public Node
+	public ExpressionNode
 {
 private:
 	std::string _name;
@@ -15,6 +15,7 @@ public:
 	void SetName(const std::string name) { _name = name; }
 
 	virtual std::string GetNodeSummary() const;
+	virtual llvm::Value *Evaluate(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function) const;
 };
 
 #endif
