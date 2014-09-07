@@ -20,5 +20,5 @@ llvm::Value *CallExpressionNode::Evaluate(llvm::Module& module, llvm::IRBuilder<
 		args.push_back(expression->Evaluate(module, builder, function));
 	}
 
-	return builder.CreateCall(module.getFunction(this->GetFunctionName()), args, this->GetFunctionName());
+	return builder.CreateCall(module.getFunction(this->GetFunctionName()), args);
 }

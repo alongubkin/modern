@@ -35,7 +35,8 @@ program
 
 declaration
     :   variableDeclaration
-    |   functionHeader block -> ^(FUNC_DEF functionHeader block)
+    |   functionHeader block? ';'?
+    	-> ^(FUNC_DEF functionHeader block?)
     ;
 
 variableDeclaration
@@ -53,9 +54,8 @@ initialiser
 	;
 	
 functionHeader
-    :   type ID '(' ( formalParameter ( ',' formalParameter )* )? ')'
-
-				-> ^(FUNC_HDR type ID ( formalParameter ( formalParameter )* )?)
+    :   'extern'? type ID '(' ( formalParameter ( ',' formalParameter )* )? ')'
+				-> ^(FUNC_HDR 'extern'? type ID ( formalParameter ( formalParameter )* )?)
     ;
 
 formalParameter

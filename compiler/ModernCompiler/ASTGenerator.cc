@@ -123,15 +123,25 @@ void ASTGenerator::VisitFunctionDefinition(const pANTLR3_BASE_TREE tree, Node *c
 	currentNode->AddChild(node);
 
 	VisitFunctionHeader(GetChild(tree, 0), node);
-	VisitBlock(GetChild(tree, 1), node);
+
+	if (tree->getChildCount(tree) > 1)
+		VisitBlock(GetChild(tree, 1), node);
 }
 
 void ASTGenerator::VisitFunctionHeader(const pANTLR3_BASE_TREE tree, FunctionNode *currentNode)
 {
-	currentNode->SetReturnType(GetChildText(tree, 0));
-	currentNode->SetName(GetChildText(tree, 1));
+	int i = 0;
 
-	for (int i = 2, len = tree->getChildCount(tree); i < len; i++)
+	if (GetChildText(tree, 0) == "extern")
+	{
+		_externs.push_back(GetChildText(tree, 2));
+		i++;
+	}
+
+	currentNode->SetReturnType(GetChildText(tree, i++));
+	currentNode->SetName(GetChildText(tree, i++));
+
+	for (int len = tree->getChildCount(tree); i < len; i++)
 	{
 		VisitArgumentDefinition(GetChild(tree, i), currentNode);
 	}

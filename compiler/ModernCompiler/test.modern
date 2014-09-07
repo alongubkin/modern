@@ -1,10 +1,6 @@
-int main() {
-	int x = 1;
-	int y = f(2)+x;
-	return y;
+extern void getchar();
+
+void main() {
+	getchar();
 }
 
-int f(int x) {
-	int y = x*2;
-	return x*y;
-}

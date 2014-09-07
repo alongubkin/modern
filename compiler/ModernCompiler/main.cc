@@ -17,6 +17,11 @@
 #include "ASTGenerator.h"
 #include "Node.h"
 
+void __getchar()
+{
+	getchar();
+}
+
 int main(int argc, char *argv[]) 
 {
 	ASTGenerator generator(argv[1]);
@@ -42,8 +47,17 @@ int main(int argc, char *argv[])
 		getchar();
 	}
 
-	// add optimizations
+	std::map<std::string, void*> externsMap;
+	externsMap["getchar"] = &__getchar;
 
+	std::vector<std::string> externs = generator.GetExterns();
+	for (std::vector<std::string>::iterator it = externs.begin(); it != externs.end(); it++)
+	{
+		void *ptr = externsMap[*it];
+		executionEngine->addGlobalMapping(module.getFunction(*it), ptr);
+	}
+
+	// add optimizations
 	llvm::FunctionPassManager fpm(&module);
 
 	// Set up the optimizer pipeline.  Start with registering info about how the
@@ -63,13 +77,13 @@ int main(int argc, char *argv[])
 
 	fpm.doInitialization();
 
+	// call "main" function and print return value
 	void *mainFunctionPtr = executionEngine->getPointerToFunction(module.getFunction("main"));
-	int(*FP)() = (int(*)())(intptr_t)mainFunctionPtr;
 
 	llvm::outs() << module;
+	((void*(*)())(intptr_t)mainFunctionPtr)();
+	
 
-	fprintf(stderr, "\nPROGRAM EVALUATED TO: %d\n", FP());
-
-	getchar();
+	//getchar();
 
 }

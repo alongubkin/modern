@@ -37,6 +37,7 @@ private:
 	pModernLexer _lexer;
 	pANTLR3_COMMON_TOKEN_STREAM _tokenStream;
 	pModernParser _parser;
+	std::vector<std::string> _externs;
 
 	void Visit(const pANTLR3_BASE_TREE tree, Node *currentNode);
 	void VisitProgram(const pANTLR3_BASE_TREE tree, Node *currentNode);
@@ -66,6 +67,7 @@ public:
 
 	void Initialize();
 	Node *Generate();
+	const std::vector<std::string>& GetExterns() const { return _externs; }
 };
 
 #endif
