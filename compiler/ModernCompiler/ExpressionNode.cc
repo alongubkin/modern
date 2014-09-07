@@ -4,7 +4,7 @@
 #include "llvm/IR/Constants.h"
 #include "llvm/IR/LLVMContext.h"
 
-void ExpressionNode::Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function) const
+void ExpressionNode::Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function)
 {
 	Evaluate(module, builder, function);
 }

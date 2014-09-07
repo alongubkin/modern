@@ -25,7 +25,7 @@ std::string FunctionNode::GetNodeSummary() const
 	return stream.str();
 }
 
-void FunctionNode::Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function) const
+void FunctionNode::Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function)
 {
 	std::vector<const Argument const*> args = GetArguments();
 	std::vector<llvm::Type*> &argTypes = std::vector<llvm::Type*>();
@@ -42,6 +42,15 @@ void FunctionNode::Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llv
 
 	llvm::Function *func = 
 		llvm::Function::Create(type, llvm::Function::ExternalLinkage, this->GetName(), &module);
-	
+
+	unsigned argIndex = 0;
+	for (llvm::Function::arg_iterator it = func->arg_begin(); argIndex != args.size();
+		++it, ++argIndex) {
+		std::string argName = args.at(argIndex)->GetName();
+
+		it->setName(argName);
+		this->SetScopeProperty(argName, it);
+	}
+
 	Node::Codegen(module, builder, func);
 }

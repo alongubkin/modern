@@ -8,7 +8,7 @@ class ReturnNode
 {
 public:
 	virtual std::string GetNodeSummary() const { return "ReturnNode"; }
-	void Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function) const;
+	void Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function);
 };
 
 #endif

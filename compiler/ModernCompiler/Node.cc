@@ -20,7 +20,7 @@ std::string Node::ToString() const
 	return stream.str();
 }
 
-void Node::Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function) const
+void Node::Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function)
 {
 	std::vector<Node*> children = this->GetChildren();
 	for (std::vector<Node*>::iterator it = children.begin(); it != children.end(); ++it)

@@ -8,7 +8,7 @@ class BlockNode :
 {
 public:
 	std::string GetNodeSummary() const { return "BlockNode"; }
-	void Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function) const;
+	void Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function);
 };
 
 #endif

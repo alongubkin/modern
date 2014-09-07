@@ -19,8 +19,7 @@ public:
 	void AddChild(Node *node) { _children.push_back(node); node->_parent = this; }
 	const std::vector<Node*> & GetChildren() const { return _children; }
 
-	void SetScopeProperty(const std::string name, llvm::Value *value) { _scope[name] = value; }
-
+	void SetScopeProperty(std::string name, llvm::Value *value) { _scope[name] = value; }
 	llvm::Value *GetScopeProperty(const std::string name) const;
 
 	Node *GetParent() const { return _parent; }
@@ -28,7 +27,7 @@ public:
 	virtual std::string GetNodeSummary() const { return "Node"; }
 	std::string ToString() const;
 
-	virtual void Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function) const;
+	virtual void Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function);
 };
  
 #endif

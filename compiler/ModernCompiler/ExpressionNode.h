@@ -12,7 +12,7 @@ class ExpressionNode
 public:
 	virtual std::string GetNodeSummary() const = 0;
 
-	virtual void Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function) const;
+	virtual void Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function);
 	virtual llvm::Value *Evaluate(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function) const = 0;
 };
 
