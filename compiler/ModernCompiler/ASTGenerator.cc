@@ -92,6 +92,10 @@ void ASTGenerator::Visit(const pANTLR3_BASE_TREE tree, Node *currentNode)
 	{
 		VisitReturn(tree, currentNode);
 	}
+	else if (token == "CALL")
+	{
+		VisitCall(tree, currentNode);
+	}
 }
 
 void ASTGenerator::VisitProgram(const pANTLR3_BASE_TREE tree, Node *currentNode)
@@ -285,6 +289,19 @@ void ASTGenerator::VisitReturn(const pANTLR3_BASE_TREE tree, Node *currentNode)
 	
 	if (tree->getChildCount(tree) == 1)
 		Visit(GetChild(tree, 0), node);
+
+	currentNode->AddChild(node);
+}
+
+void ASTGenerator::VisitCall(const pANTLR3_BASE_TREE tree, Node *currentNode)
+{
+	CallExpressionNode *node = new CallExpressionNode();
+	node->SetFunctionName(GetChildText(tree, 0));
+	
+	for (int i = 1; i < tree->getChildCount(tree); i++)
+	{
+		Visit(GetChild(tree, i), node);
+	}
 
 	currentNode->AddChild(node);
 }

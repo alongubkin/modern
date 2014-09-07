@@ -62,6 +62,9 @@
     <ClCompile Include="AssignmentNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CallExpressionNode.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="output\ModernLexer.h">
@@ -104,6 +107,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ScopeProperty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CallExpressionNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

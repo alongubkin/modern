@@ -26,6 +26,7 @@
 #include "AssignmentNode.h"
 #include "ReturnNode.h"
 #include "BlockNode.h"
+#include "CallExpressionNode.h"
 
 class ASTGenerator
 {
@@ -52,6 +53,7 @@ private:
 	void VisitFloatLiteral(const pANTLR3_BASE_TREE tree, Node *currentNode);
 	void VisitIdentifier(const pANTLR3_BASE_TREE tree, Node *currentNode);
 	void VisitReturn(const pANTLR3_BASE_TREE tree, Node *currentNode);
+	void VisitCall(const pANTLR3_BASE_TREE tree, Node *currentNode);
 
 	pANTLR3_BASE_TREE GetChild(const pANTLR3_BASE_TREE tree, const ANTLR3_UINT32 index) const;
 	std::string GetChildText(const pANTLR3_BASE_TREE tree, const ANTLR3_UINT32 index) const;

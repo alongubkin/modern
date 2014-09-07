@@ -25,7 +25,8 @@ tokens
     INTEGER;
     RETURN;
     FLOAT_LITERAL;
-	DECLARATOR;    
+	DECLARATOR;  
+	CALL;  
 }
 
 program
@@ -43,18 +44,18 @@ variableDeclaration
     ;
 
 declarator
-    :   ID initalizer?
-    		-> ^(DECLARATOR ID initalizer?)
+    :   ID initialiser?
+    		-> ^(DECLARATOR ID initialiser?)
     ;
 
-initalizer
+initialiser
 	:	EQ expression -> expression
 	;
 	
 functionHeader
     :   type ID '(' ( formalParameter ( ',' formalParameter )* )? ')'
 
-				-> ^(FUNC_HDR type ID formalParameter+)
+				-> ^(FUNC_HDR type ID ( formalParameter ( formalParameter )* )?)
     ;
 
 formalParameter
@@ -128,14 +129,19 @@ multiplicationExpression
     :   literal (MULTIPLY_OP literal)* 
     		-> ^(MULTIPLY literal (MULTIPLY_OP literal)*)
     ;
-
 	
 literal
     : ID -> ^(IDENTIFIER ID)
     | INT -> ^(INTEGER INT)
     | FLOAT -> ^(FLOAT_LITERAL FLOAT)
     | '(' expression ')' -> expression
+    | call
     ; 
+    
+call
+	: ID '(' (expression (',' expression)*)? ')'
+		-> ^(CALL ID (expression (expression)*)?) 
+	;
     
 
 NeverUsedRule: /* don't care*/ ;

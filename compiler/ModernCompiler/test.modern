@@ -1,7 +1,8 @@
-double foo (double x, int y) {
-	double a = 5.0,
-		   b,
-		   c = x;
-	return a+b+c;
+int f(int x) { 
+	return x; 
+}
 
+int main () {
+	int i = f(1)+5;
+	return i;
 }

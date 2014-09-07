@@ -90,6 +90,7 @@
   <ItemGroup>
     <ClCompile Include="AssignmentNode.cpp" />
     <ClCompile Include="BlockNode.cc" />
+    <ClCompile Include="CallExpressionNode.cc" />
     <ClCompile Include="ExpressionNode.cc" />
     <ClCompile Include="FunctionNode.cc" />
     <ClCompile Include="IdentifierNode.cc" />
@@ -106,6 +107,7 @@
   <ItemGroup>
     <ClInclude Include="AssignmentNode.h" />
     <ClInclude Include="BlockNode.h" />
+    <ClInclude Include="CallExpressionNode.h" />
     <ClInclude Include="ExpressionNode.h" />
     <ClInclude Include="FunctionNode.h" />
     <ClInclude Include="IdentifierNode.h" />
