@@ -144,11 +144,14 @@ void ASTGenerator::VisitArgumentDefinition(const pANTLR3_BASE_TREE tree, Functio
 
 void ASTGenerator::VisitVariableDeclaration(const pANTLR3_BASE_TREE tree, Node *currentNode)
 {
-	VariableDeclarationNode *node = new VariableDeclarationNode();
-	node->SetType(GetChildText(tree, 0));
-	node->SetName(GetChildText(tree, 1));
+	for (int i = 1; i < tree->getChildCount(tree); i++)
+	{
+		VariableDeclarationNode *node = new VariableDeclarationNode();
+		node->SetType(GetChildText(tree, 0));
+		node->SetName(GetChildText(tree, i));
 
-	currentNode->AddChild(node);
+		currentNode->AddChild(node);
+	}	
 }
 
 void ASTGenerator::VisitAssignment(const pANTLR3_BASE_TREE tree, Node *currentNode)

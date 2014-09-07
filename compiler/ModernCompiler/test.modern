@@ -1,4 +1,4 @@
 double foo (double x, int y) {
-	int p;
-	return p/y;
+	int a,b,c,d,e,f,g;
+	return a+b+c;
 }

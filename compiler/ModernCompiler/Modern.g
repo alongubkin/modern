@@ -37,7 +37,8 @@ declaration
     ;
 
 variableDeclaration
-    :   type declarator ';'	-> ^(VAR_DEF type declarator)
+    :   type declarator (',' declarator)* ';'	
+    		-> ^(VAR_DEF type declarator (declarator)*)
     ;
 
 declarator
