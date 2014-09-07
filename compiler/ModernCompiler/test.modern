@@ -1,3 +1,6 @@
-int foo(int x) {
-	return 5-10+5;
+int f(int x) {
+	var x;
+	x = 5;
+
+	return 5*5+1*(2+4);
 }
