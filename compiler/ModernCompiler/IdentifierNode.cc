@@ -18,5 +18,5 @@ llvm::Value *IdentifierNode::Evaluate(llvm::Module& module, llvm::IRBuilder<>& b
 		node = node->GetParent();
 	} while (node != NULL);
 
-	return NULL; // TODO
+	throw; // TODO
 }

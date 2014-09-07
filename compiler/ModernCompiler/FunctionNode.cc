@@ -32,12 +32,10 @@ void FunctionNode::Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llv
 
 	for (std::vector<const Argument const*>::iterator it = args.begin(); it != args.end(); ++it)
 	{
-		// (*it)->GetType()
-		argTypes.push_back(llvm::Type::getInt32Ty(llvm::getGlobalContext()));
-		
+		argTypes.push_back(GetLLVMType((*it)->GetType()));
 	}
 	
-	llvm::FunctionType *type = llvm::FunctionType::get(llvm::Type::getInt32Ty(llvm::getGlobalContext()),
+	llvm::FunctionType *type = llvm::FunctionType::get(GetLLVMType(this->GetReturnType()),
 		argTypes, false);
 
 	llvm::Function *func = 

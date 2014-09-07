@@ -7,6 +7,10 @@
 
 #include <vector>
 #include <sstream>
+#include <string>
+
+// TODO: move this to another place
+llvm::Type *GetLLVMType(std::string type);
 
 class Node
 {

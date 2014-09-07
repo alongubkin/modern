@@ -1,5 +1,18 @@
 #include "Node.h"
 
+// TODO: move this to another place
+llvm::Type *GetLLVMType(std::string type)
+{
+	if (type == "int")
+		return llvm::Type::getInt32Ty(llvm::getGlobalContext());
+	else if (type == "double")
+		return llvm::Type::getDoubleTy(llvm::getGlobalContext());
+	else if (type == "void")
+		return llvm::Type::getVoidTy(llvm::getGlobalContext());
+	
+	throw;
+}
+
 std::string Node::ToString() const
 {
 	std::ostringstream stream;
