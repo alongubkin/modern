@@ -2,7 +2,6 @@ int f(int x) {
 	return x; 
 }
 
-int main () {
+void main () {
 	int i = f(1)+5;
-	return i;
 }

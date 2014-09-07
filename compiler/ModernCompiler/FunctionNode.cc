@@ -35,7 +35,9 @@ void FunctionNode::Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llv
 		argTypes.push_back(GetLLVMType((*it)->GetType()));
 	}
 	
-	llvm::FunctionType *type = llvm::FunctionType::get(GetLLVMType(this->GetReturnType()),
+	llvm::Type *returnType = GetLLVMType(this->GetReturnType());
+
+	llvm::FunctionType *type = llvm::FunctionType::get(returnType,
 		argTypes, false);
 
 	llvm::Function *func = 
@@ -51,4 +53,11 @@ void FunctionNode::Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llv
 	}
 
 	Node::Codegen(module, builder, func);
+
+	if (returnType->getTypeID() == llvm::Type::VoidTyID)
+	{
+		// TODO: If a ReturnNode was at the end of this node,
+		// do not create this RetVoid
+		builder.CreateRetVoid();
+	}
 }
