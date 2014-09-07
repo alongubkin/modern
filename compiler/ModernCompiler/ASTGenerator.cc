@@ -80,6 +80,10 @@ void ASTGenerator::Visit(const pANTLR3_BASE_TREE tree, Node *currentNode)
 	{
 		VisitIntegerLiteral(tree, currentNode);
 	}
+	else if (token == "FLOAT_LITERAL")
+	{
+		VisitFloatLiteral(tree, currentNode);
+	}
 	else if (token == "IDENTIFIER")
 	{
 		VisitIdentifier(tree, currentNode);
@@ -239,6 +243,16 @@ void ASTGenerator::VisitIntegerLiteral(const pANTLR3_BASE_TREE tree, Node *curre
 	LiteralNode<long> *node = new LiteralNode<long>();
 	node->SetValue(atol(text.c_str()));
 	
+	currentNode->AddChild(node);
+}
+
+void ASTGenerator::VisitFloatLiteral(const pANTLR3_BASE_TREE tree, Node *currentNode)
+{
+	std::string text = GetChildText(tree, 0);
+
+	LiteralNode<double> *node = new LiteralNode<double>();
+	node->SetValue(atof(text.c_str()));
+
 	currentNode->AddChild(node);
 }
 

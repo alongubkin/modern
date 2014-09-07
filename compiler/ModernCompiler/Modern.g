@@ -24,11 +24,7 @@ tokens
     IDENTIFIER;
     INTEGER;
     RETURN;
-}
-
-@header
-{
-   #define _empty NULL
+    FLOAT_LITERAL;
 }
 
 program
@@ -126,6 +122,7 @@ multiplicationExpression
 literal
     : ID -> ^(IDENTIFIER ID)
     | INT -> ^(INTEGER INT)
+    | FLOAT -> ^(FLOAT_LITERAL FLOAT)
     | '(' expression ')' -> expression
     ; 
     
@@ -143,6 +140,11 @@ ID  :   ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
 INT :	('0'..'9')+
     ;
 
+FLOAT
+	:	('0'..'9')+ '.' ('0'..'9')*
+	| 	'.' ('0'..'9')+
+	;
+	
 EQ   : '=' ;
 EQEQ : '==' ;
 OPLT   : '<' ;

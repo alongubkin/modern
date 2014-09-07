@@ -37,6 +37,7 @@ private:
 	void VisitComparasionExpression(const pANTLR3_BASE_TREE tree, Node *currentNode);
 	void VisitArithmeticExpression(const pANTLR3_BASE_TREE tree, Node *currentNode);
 	void VisitIntegerLiteral(const pANTLR3_BASE_TREE tree, Node *currentNode);
+	void VisitFloatLiteral(const pANTLR3_BASE_TREE tree, Node *currentNode);
 	void VisitIdentifier(const pANTLR3_BASE_TREE tree, Node *currentNode);
 	void VisitReturn(const pANTLR3_BASE_TREE tree, Node *currentNode);
 
