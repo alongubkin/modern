@@ -110,13 +110,13 @@ comparisonOperator
 	;
 
 additionExpression
-    :   multiplicationExpression (op = ('+' | '-') multiplicationExpression)*  
-    		-> ^(ADDITION multiplicationExpression  ($op multiplicationExpression)*)
+    :   multiplicationExpression (ADDITION_OP multiplicationExpression)*  
+    		-> ^(ADDITION multiplicationExpression  (ADDITION_OP multiplicationExpression)*)
     ;
 
 multiplicationExpression
-    :   literal (op = ('*' | '/') literal)* 
-    		-> ^(MULTIPLY literal ($op literal)*)
+    :   literal (MULTIPLY_OP literal)* 
+    		-> ^(MULTIPLY literal (MULTIPLY_OP literal)*)
     ;
 
 	
@@ -135,6 +135,14 @@ INT_TYPE : 'int' ;
 CHAR_TYPE: 'char';
 VOID_TYPE: 'void';
 
+ADDITION_OP
+	:	 '+' | '-'
+	;
+
+MULTIPLY_OP
+	: 	'*' | '/'
+	;
+	
 ID  :   ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
     ;
 
@@ -149,7 +157,6 @@ FLOAT
 EQ   : '=' ;
 EQEQ : '==' ;
 OPLT   : '<' ;
-PLUS : '+' ;
 
 WS  :   (   ' '
         |   '\t'
