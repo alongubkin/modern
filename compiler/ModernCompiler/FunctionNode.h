@@ -38,6 +38,7 @@ public:
 	virtual std::string GetNodeSummary() const;
 
 	void Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function);
+	llvm::Function *Codegen(llvm::Module& module, llvm::IRBuilder<>& builder);
 };
 
 #endif

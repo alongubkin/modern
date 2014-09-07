@@ -1,7 +1,8 @@
-int f(int x) { 
-	return x; 
+void main (int x) {
+	int y;
+	int i = f(x*y)+f(y+3);
 }
 
-void main () {
-	int i = f(1)+5;
+int f(int x) { 
+	return x; 
 }

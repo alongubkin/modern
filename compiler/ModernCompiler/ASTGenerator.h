@@ -18,6 +18,7 @@
 
 #include "ParseException.h"
 #include "Node.h"
+#include "ProgramNode.h"
 #include "FunctionNode.h"
 #include "VariableDeclarationNode.h"
 #include "ExpressionNode.h"

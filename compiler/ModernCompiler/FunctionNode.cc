@@ -27,6 +27,27 @@ std::string FunctionNode::GetNodeSummary() const
 
 void FunctionNode::Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function)
 {
+	if (function == NULL)
+	{
+		Codegen(module, builder, NULL);
+	}
+	else 
+	{
+		Node::Codegen(module, builder, function);
+
+		llvm::Type::TypeID typeId = function->getFunctionType()->getReturnType()->getTypeID();
+
+		if (typeId == llvm::Type::VoidTyID)
+		{
+			// TODO: If a ReturnNode was at the end of this node,
+			// do not create this RetVoid
+			builder.CreateRetVoid();
+		}
+	}
+}
+
+llvm::Function *FunctionNode::Codegen(llvm::Module& module, llvm::IRBuilder<>& builder)
+{
 	std::vector<const Argument const*> args = GetArguments();
 	std::vector<llvm::Type*> &argTypes = std::vector<llvm::Type*>();
 
@@ -52,12 +73,5 @@ void FunctionNode::Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llv
 		this->SetScopeProperty(argName, new ScopeProperty(it, true, type->getTypeID()));
 	}
 
-	Node::Codegen(module, builder, func);
-
-	if (returnType->getTypeID() == llvm::Type::VoidTyID)
-	{
-		// TODO: If a ReturnNode was at the end of this node,
-		// do not create this RetVoid
-		builder.CreateRetVoid();
-	}
+	return func;
 }

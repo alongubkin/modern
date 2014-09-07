@@ -101,6 +101,7 @@
     <ClCompile Include="output\ModernParser.c" />
     <ClCompile Include="ASTGenerator.cc" />
     <ClCompile Include="ParseException.cc" />
+    <ClCompile Include="ProgramNode.cc" />
     <ClCompile Include="ReturnNode.cc" />
     <ClCompile Include="VariableDeclarationNode.cc" />
   </ItemGroup>
@@ -117,6 +118,7 @@
     <ClInclude Include="output\ModernParser.h" />
     <ClInclude Include="ASTGenerator.h" />
     <ClInclude Include="ParseException.h" />
+    <ClInclude Include="ProgramNode.h" />
     <ClInclude Include="ReturnNode.h" />
     <ClInclude Include="ScopeProperty.h" />
     <ClInclude Include="VariableDeclarationNode.h" />

@@ -38,7 +38,7 @@ Node *ASTGenerator::Generate()
 	if (_parser->pParser->rec->state->errorCount > 0)
 		throw ParseException("The parser returned errors, tree walking aborted.");
 
-	Node *rootNode = new Node();
+	ProgramNode *rootNode = new ProgramNode();
 	Visit(program.tree, rootNode);
 	
 	return rootNode;

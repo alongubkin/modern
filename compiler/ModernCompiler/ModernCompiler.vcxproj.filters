@@ -65,6 +65,9 @@
     <ClCompile Include="CallExpressionNode.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ProgramNode.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="output\ModernLexer.h">
@@ -110,6 +113,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CallExpressionNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProgramNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
