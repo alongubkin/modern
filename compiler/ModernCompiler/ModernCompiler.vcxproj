@@ -61,7 +61,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>LLVMAnalysis.lib;LLVMCore.lib;LLVMExecutionEngine.lib;LLVMInstCombine.lib;LLVMJIT.lib;LLVMMC.lib;LLVMScalarOpts.lib;LLVMSupport.lib;LLVMTransformUtils.lib;LLVMX86CodeGen.lib;LLVMX86Desc.lib;LLVMX86Info.lib;LLVMObject.lib;LLVMBitReader.lib;LLVMAsmPrinter.lib;LLVMMCParser.lib;LLVMSelectionDAG.lib;LLVMCodeGen.lib;LLVMipa.lib;LLVMTarget.lib;LLVMX86AsmPrinter.lib;LLVMX86Utils.lib;antlr3cd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>LLVMAnalysis.lib;LLVMCore.lib;LLVMExecutionEngine.lib;LLVMInstCombine.lib;LLVMJIT.lib;LLVMMC.lib;LLVMScalarOpts.lib;LLVMSupport.lib;LLVMTransformUtils.lib;LLVMX86CodeGen.lib;LLVMX86Desc.lib;LLVMX86Info.lib;LLVMObject.lib;LLVMBitReader.lib;LLVMAsmPrinter.lib;LLVMMCParser.lib;LLVMSelectionDAG.lib;LLVMCodeGen.lib;LLVMipa.lib;LLVMTarget.lib;LLVMX86AsmPrinter.lib;LLVMX86Utils.lib;LLVMInterpreter.lib;antlr3cd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Users\Alon\Desktop\libantlr3c-3.4\Debug;C:\llvm-3.5.0.src\Debug\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
