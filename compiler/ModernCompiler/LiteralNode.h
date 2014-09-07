@@ -5,7 +5,7 @@
 
 template <typename T>
 class LiteralNode
-	: public Node
+	: public Node 
 {
 private:
 	T _value;
@@ -14,7 +14,12 @@ public:
 	T GetValue() const { return _value; }
 	void SetValue(const T value) { _value = value; }
 	
-	virtual std::string GetNodeSummary() const;
+	virtual std::string GetNodeSummary() const
+	{
+		std::ostringstream stream;
+		stream << "LiteralNode { value: " << GetValue() << " }";
+		return stream.str();
+	}
 };
 
 #endif
