@@ -104,9 +104,12 @@ comparisonExpression
     ;
 
 comparisonOperator
-	:	OPLT 
-	|	EQEQ 
-    |	{false}? NeverUsedRule	
+	:	'<' 
+	|	'<='
+	|	'>'
+	| 	'>='
+	|	'=='
+	|	{false}? NeverUsedRule	
 	;
 
 additionExpression
@@ -155,8 +158,6 @@ FLOAT
 	;
 	
 EQ   : '=' ;
-EQEQ : '==' ;
-OPLT   : '<' ;
 
 WS  :   (   ' '
         |   '\t'

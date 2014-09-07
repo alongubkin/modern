@@ -17,7 +17,7 @@ public:
 	T GetValue() const { return _value; }
 	void SetValue(const T value) { _value = value; }
 	
-	llvm::Value *Codegen(llvm::IRBuilder<>& builder) const;
+	llvm::Value *Evaluate(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function) const;
 	std::string GetNodeSummary() const
 	{
 		std::ostringstream stream;

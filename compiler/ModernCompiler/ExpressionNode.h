@@ -11,7 +11,9 @@ class ExpressionNode
 {
 public:
 	virtual std::string GetNodeSummary() const = 0;
-	virtual llvm::Value *Codegen(llvm::IRBuilder<>& builder) const = 0;
+
+	virtual void Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function) const;
+	virtual llvm::Value *Evaluate(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function) const = 0;
 };
 
 enum COMPARISON_OPERATOR
@@ -42,7 +44,7 @@ public:
 	COMPARISON_OPERATOR GetOperator() const { return _op; }
 
 	virtual std::string GetNodeSummary() const;
-	virtual llvm::Value *Codegen(llvm::IRBuilder<>& builder) const;
+	virtual llvm::Value *Evaluate(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function) const;
 };
 
 class ArithmeticExpressionNode :
@@ -56,7 +58,7 @@ public:
 	ARITHMETIC_OPERATOR GetOperator() const { return _op; }
 
 	virtual std::string GetNodeSummary() const;
-	virtual llvm::Value *Codegen(llvm::IRBuilder<>& builder) const;
+	virtual llvm::Value *Evaluate(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function) const;
 };
 
 

@@ -25,6 +25,7 @@
 #include "IdentifierNode.h"
 #include "AssignmentNode.h"
 #include "ReturnNode.h"
+#include "BlockNode.h"
 
 class ASTGenerator
 {

@@ -104,7 +104,7 @@ void ASTGenerator::VisitProgram(const pANTLR3_BASE_TREE tree, Node *currentNode)
 
 void ASTGenerator::VisitBlock(const pANTLR3_BASE_TREE tree, Node *currentNode)
 {
-	Node *node = new Node();
+	BlockNode *node = new BlockNode();
 	currentNode->AddChild(node);
 
 	for (int i = 0, len = tree->getChildCount(tree); i < len; i++)

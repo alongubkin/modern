@@ -89,6 +89,7 @@
     <None Include="test.modern" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BlockNode.cc" />
     <ClCompile Include="ExpressionNode.cc" />
     <ClCompile Include="FunctionNode.cc" />
     <ClCompile Include="IdentifierNode.cc" />
@@ -99,10 +100,12 @@
     <ClCompile Include="output\ModernParser.c" />
     <ClCompile Include="ASTGenerator.cc" />
     <ClCompile Include="ParseException.cc" />
+    <ClCompile Include="ReturnNode.cc" />
     <ClCompile Include="VariableDeclarationNode.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssignmentNode.h" />
+    <ClInclude Include="BlockNode.h" />
     <ClInclude Include="ExpressionNode.h" />
     <ClInclude Include="FunctionNode.h" />
     <ClInclude Include="IdentifierNode.h" />
@@ -112,7 +115,6 @@
     <ClInclude Include="output\ModernParser.h" />
     <ClInclude Include="ASTGenerator.h" />
     <ClInclude Include="ParseException.h" />
-    <ClInclude Include="Reference.h" />
     <ClInclude Include="ReturnNode.h" />
     <ClInclude Include="VariableDeclarationNode.h" />
   </ItemGroup>

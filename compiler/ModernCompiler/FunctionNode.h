@@ -36,6 +36,8 @@ public:
 	void AddArgument(const Argument * const arg) { _args.push_back(arg); }
 
 	virtual std::string GetNodeSummary() const;
+
+	void Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function) const;
 };
 
 #endif
