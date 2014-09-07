@@ -1,4 +1,9 @@
 #include "ExpressionNode.h"
+#include "LiteralNode.h"
+
+#include "llvm/IR/Constants.h"
+#include "llvm/IR/LLVMContext.h"
+
 
 std::string ComparisonExpressionNode::GetNodeSummary() const
 {
@@ -20,6 +25,16 @@ std::string ComparisonExpressionNode::GetNodeSummary() const
 	return stream.str();
 }
 
+llvm::Value *ComparisonExpressionNode::Codegen(llvm::IRBuilder<>& builder) const
+{
+	std::vector<Node*> children = this->GetChildren();
+
+	llvm::Value *left = dynamic_cast<ExpressionNode*>(children.front())->Codegen(builder);
+	llvm::Value *right = dynamic_cast<ExpressionNode*>(children.back())->Codegen(builder);
+	
+	return builder.CreateFCmpULT(left, right, "cmptmp");
+}
+
 std::string ArithmeticExpressionNode::GetNodeSummary() const
 {
 	std::ostringstream stream;
@@ -36,4 +51,27 @@ std::string ArithmeticExpressionNode::GetNodeSummary() const
 
 	stream << " }";
 	return stream.str();
+}
+
+llvm::Value *ArithmeticExpressionNode::Codegen(llvm::IRBuilder<>& builder) const
+{
+	std::vector<Node*> children = this->GetChildren();
+
+	llvm::Value *left = dynamic_cast<ExpressionNode*>(children.front())->Codegen(builder);
+	llvm::Value *right = dynamic_cast<ExpressionNode*>(children.back())->Codegen(builder);
+
+	switch (this->GetOperator()) 
+	{
+	case PLUS_:
+		return builder.CreateFAdd(left, right, "addtmp");
+
+	case MINUS:
+		return builder.CreateFSub(left, right, "subtmp");
+
+	case MULTIPLY_:
+		return builder.CreateFMul(left, right, "multmp");
+
+	case DIVISION:
+		return builder.CreateFDiv(left, right, "divtmp");
+	}
 }

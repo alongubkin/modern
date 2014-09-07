@@ -1,6 +1,16 @@
 #ifndef _ASTGENERATOR_H
 #define _ASTGENERATOR_H
 
+#include "llvm/IR/Constants.h"
+#include "llvm/IR/DerivedTypes.h"
+#include "llvm/IR/IRBuilder.h"
+#include "llvm/IR/Instructions.h"
+#include "llvm/IR/LLVMContext.h"
+#include "llvm/IR/Module.h"
+#include "llvm/Support/ManagedStatic.h"
+#include "llvm/Support/TargetSelect.h"
+#include "llvm/Support/raw_ostream.h"
+
 #include <iostream>
 
 #include "output/ModernLexer.h"

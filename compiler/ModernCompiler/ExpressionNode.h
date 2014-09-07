@@ -1,6 +1,9 @@
 #ifndef _EXPRESSION_NODE_H
 #define _EXPRESSION_NODE_H
 
+#include "llvm/IR/DerivedTypes.h"
+#include "llvm/IR/IRBuilder.h"
+
 #include "Node.h"
 
 class ExpressionNode
@@ -8,6 +11,7 @@ class ExpressionNode
 {
 public:
 	virtual std::string GetNodeSummary() const = 0;
+	virtual llvm::Value *Codegen(llvm::IRBuilder<>& builder) const = 0;
 };
 
 enum COMPARISON_OPERATOR
@@ -38,6 +42,7 @@ public:
 	COMPARISON_OPERATOR GetOperator() const { return _op; }
 
 	virtual std::string GetNodeSummary() const;
+	virtual llvm::Value *Codegen(llvm::IRBuilder<>& builder) const;
 };
 
 class ArithmeticExpressionNode :
@@ -51,6 +56,7 @@ public:
 	ARITHMETIC_OPERATOR GetOperator() const { return _op; }
 
 	virtual std::string GetNodeSummary() const;
+	virtual llvm::Value *Codegen(llvm::IRBuilder<>& builder) const;
 };
 
 

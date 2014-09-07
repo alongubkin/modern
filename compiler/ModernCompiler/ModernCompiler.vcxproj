@@ -92,6 +92,7 @@
     <ClCompile Include="ExpressionNode.cc" />
     <ClCompile Include="FunctionNode.cc" />
     <ClCompile Include="IdentifierNode.cc" />
+    <ClCompile Include="LiteralNode.cc" />
     <ClCompile Include="main.cc" />
     <ClCompile Include="Node.cc" />
     <ClCompile Include="output\ModernLexer.c" />

@@ -2,10 +2,13 @@
 #define _LITERAL_NODE_H
 
 #include "Node.h"
+#include "ExpressionNode.h"
+
+#include "llvm/IR/Constants.h"
 
 template <typename T>
 class LiteralNode
-	: public Node 
+	: public ExpressionNode 
 {
 private:
 	T _value;
@@ -14,7 +17,8 @@ public:
 	T GetValue() const { return _value; }
 	void SetValue(const T value) { _value = value; }
 	
-	virtual std::string GetNodeSummary() const
+	llvm::Value *Codegen(llvm::IRBuilder<>& builder) const;
+	std::string GetNodeSummary() const
 	{
 		std::ostringstream stream;
 		stream << "LiteralNode { value: " << GetValue() << " }";
