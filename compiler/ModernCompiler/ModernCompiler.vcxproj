@@ -89,6 +89,7 @@
     <None Include="test.modern" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AssignmentNode.cpp" />
     <ClCompile Include="BlockNode.cc" />
     <ClCompile Include="ExpressionNode.cc" />
     <ClCompile Include="FunctionNode.cc" />
@@ -116,6 +117,7 @@
     <ClInclude Include="ASTGenerator.h" />
     <ClInclude Include="ParseException.h" />
     <ClInclude Include="ReturnNode.h" />
+    <ClInclude Include="ScopeProperty.h" />
     <ClInclude Include="VariableDeclarationNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

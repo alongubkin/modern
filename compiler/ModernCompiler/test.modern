@@ -1,3 +1,4 @@
-void f(double x, int y) {
-	return x/5*y;
+double foo (double x, int y) {
+	int p;
+	return p/y;
 }

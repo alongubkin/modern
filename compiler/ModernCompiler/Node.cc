@@ -42,9 +42,9 @@ void Node::Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Funct
 	}
 }
 
-llvm::Value *Node::GetScopeProperty(const std::string name) const
+ScopeProperty *Node::GetScopeProperty(const std::string name) const
 {
-	std::map<std::string, llvm::Value*>::const_iterator pair = _scope.find(name);
+	std::map<std::string, ScopeProperty*>::const_iterator pair = _scope.find(name);
 	if (pair == _scope.end())
 		return NULL;
 

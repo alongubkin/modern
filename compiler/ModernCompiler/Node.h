@@ -9,6 +9,8 @@
 #include <sstream>
 #include <string>
 
+#include "ScopeProperty.h"
+
 // TODO: move this to another place
 llvm::Type *GetLLVMType(std::string type);
 
@@ -16,15 +18,15 @@ class Node
 {
 private:
 	std::vector<Node*> _children;
-	std::map<std::string, llvm::Value*> _scope;
+	std::map<std::string, ScopeProperty*> _scope;
 	Node *_parent = NULL;
 	
 public:
 	void AddChild(Node *node) { _children.push_back(node); node->_parent = this; }
 	const std::vector<Node*> & GetChildren() const { return _children; }
 
-	void SetScopeProperty(std::string name, llvm::Value *value) { _scope[name] = value; }
-	llvm::Value *GetScopeProperty(const std::string name) const;
+	void SetScopeProperty(std::string name, ScopeProperty *value) { _scope[name] = value; }
+	ScopeProperty *GetScopeProperty(const std::string name) const;
 
 	Node *GetParent() const { return _parent; }
 

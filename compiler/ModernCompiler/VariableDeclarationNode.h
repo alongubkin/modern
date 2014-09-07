@@ -18,6 +18,7 @@ public:
 	std::string GetType() const { return _type; }
 
 	virtual std::string GetNodeSummary() const;
+	virtual void Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function);
 };
 
 #endif

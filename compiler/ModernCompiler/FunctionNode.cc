@@ -47,7 +47,7 @@ void FunctionNode::Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llv
 		std::string argName = args.at(argIndex)->GetName();
 
 		it->setName(argName);
-		this->SetScopeProperty(argName, it);
+		this->SetScopeProperty(argName, new ScopeProperty(it, true, type->getTypeID()));
 	}
 
 	Node::Codegen(module, builder, func);

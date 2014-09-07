@@ -69,7 +69,6 @@ llvm::Value *ArithmeticExpressionNode::Evaluate(llvm::Module& module, llvm::IRBu
 	llvm::Type::TypeID leftTypeId = left->getType()->getTypeID();
 	llvm::Type::TypeID rightTypeId = right->getType()->getTypeID();
 
-
 	if (this->GetOperator() == DIVISION 
 		|| leftTypeId == llvm::Type::DoubleTyID 
 		|| rightTypeId == llvm::Type::DoubleTyID)
@@ -78,7 +77,7 @@ llvm::Value *ArithmeticExpressionNode::Evaluate(llvm::Module& module, llvm::IRBu
 
 		if (leftTypeId != llvm::Type::DoubleTyID)
 			left = builder.CreateSIToFP(left, llvm::Type::getDoubleTy(llvm::getGlobalContext()), "cast");
-		
+
 		if (rightTypeId != llvm::Type::DoubleTyID)
 			right = builder.CreateSIToFP(right, llvm::Type::getDoubleTy(llvm::getGlobalContext()), "cast");
 	}

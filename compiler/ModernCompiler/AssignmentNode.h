@@ -8,6 +8,7 @@ class AssignmentNode
 {
 public:
 	virtual std::string GetNodeSummary() const { return "AssignmentNode"; }
+	void Codegen(llvm::Module& module, llvm::IRBuilder<>& builder, llvm::Function *function);
 };
 
 #endif

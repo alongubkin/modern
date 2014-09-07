@@ -65,10 +65,9 @@ type
 
 block
     :   lc='{'
-            variableDeclaration*
             statement*
         '}'
-        -> ^(BLOCK[$lc, "BLOCK"] variableDeclaration* statement*)
+        -> ^(BLOCK[$lc, "BLOCK"] statement*)
     ;
 
 statement
@@ -77,6 +76,7 @@ statement
     | block
     | assignStatement ';'
     | returnStatement ';'
+    | variableDeclaration
     | ';'
     ;
 

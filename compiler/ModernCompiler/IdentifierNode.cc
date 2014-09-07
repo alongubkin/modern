@@ -11,12 +11,18 @@ llvm::Value *IdentifierNode::Evaluate(llvm::Module& module, llvm::IRBuilder<>& b
 {
 	const Node *node = this;
 	do {
-		llvm::Value *value = node->GetScopeProperty(GetName());
-		if (value != NULL)
-			return value;
+		ScopeProperty *prop = node->GetScopeProperty(GetName());
+		
+		if (prop != NULL)
+		{
+			if (prop->IsArgument())
+				return prop->GetValue();
+
+			return builder.CreateLoad(prop->GetValue(), GetName());
+		}
 
 		node = node->GetParent();
 	} while (node != NULL);
-
+	
 	throw; // TODO
 }
