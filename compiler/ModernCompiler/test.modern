@@ -1,4 +1,4 @@
 int foo(int x) {
-	return 0.00001;
+	return 1*2;
 }
 

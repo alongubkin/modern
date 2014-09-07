@@ -115,7 +115,8 @@ additionExpression
     ;
 
 multiplicationExpression
-    :   literal ('*' literal)* -> ^(MULTIPLY literal ('*' literal)*)
+    :   literal (op = ('*' | '/') literal)* 
+    		-> ^(MULTIPLY literal ($op literal)*)
     ;
 
 	
