@@ -110,8 +110,8 @@ comparisonOperator
 	;
 
 additionExpression
-    :   multiplicationExpression ('+' multiplicationExpression)*  
-    		-> ^(ADDITION multiplicationExpression  ('+' multiplicationExpression)*)
+    :   multiplicationExpression (op = ('+' | '-') multiplicationExpression)*  
+    		-> ^(ADDITION multiplicationExpression  ($op multiplicationExpression)*)
     ;
 
 multiplicationExpression
