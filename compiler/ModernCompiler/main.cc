@@ -53,6 +53,8 @@ int main(int argc, char *argv[])
 	std::vector<std::string> externs = generator.GetExterns();
 	for (std::vector<std::string>::iterator it = externs.begin(); it != externs.end(); it++)
 	{
+		std::cout << "> adding extern " << *it << std::endl << std::endl;
+
 		void *ptr = externsMap[*it];
 		executionEngine->addGlobalMapping(module.getFunction(*it), ptr);
 	}
