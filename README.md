@@ -17,7 +17,7 @@ modern is an experimental programming language built with ANTLR and LLVM in C++ 
 
 modern currently supports syntax like:
 
-    extern getchar();
+    extern int getchar();
 
     int f(double x, int y) {
         double p = x+y,
