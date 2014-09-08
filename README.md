@@ -3,6 +3,18 @@ modern
 
 modern is an experimental programming language built with ANTLR and LLVM in C++ for educational purposes.
 
+### Features
+
+* Static compilation, JIT, and compilation to JavaScript with emscripten
+* C-like syntax
+* Functions
+* Expressions
+* `double` and `int` types
+* Automatic casting
+* Externs
+
+### Example
+
 modern currently supports syntax like:
 
     extern getchar();
